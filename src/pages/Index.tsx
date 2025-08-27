@@ -57,9 +57,7 @@ const Index = () => {
               <h3 className="font-semibold mb-2">How to Use</h3>
               <p className="text-sm text-muted-foreground">Press the SOS button to activate emergency flashing. The screen will flash red and white every half second to signal for help. This will help in crowded spaces to get the supporting staff on the right location.
 
-Disclaimer: 
-
-This app doesn't connect directly to the emergency staff. But by using this flashing light the staff will find faster the locations. Every second matter.</p>
+Disclaimer:  This app doesn't connect directly to the emergency staff. But by using this flashing light the staff will find faster the locations. Every second matter.</p>
             </CardContent>
           </Card>
         </div>}
