@@ -13,9 +13,7 @@ export const ContactRegistration = () => {
     name: '',
     phone: '',
     email: '',
-    address: '',
-    emergencyContact: '',
-    medicalInfo: ''
+    address: ''
   });
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,8 +31,6 @@ export const ContactRegistration = () => {
           phone: formData.phone,
           email: formData.email || null,
           address: formData.address || null,
-          emergency_contact: formData.emergencyContact || null,
-          medical_info: formData.medicalInfo || null,
         });
 
       if (error) {
@@ -51,9 +47,7 @@ export const ContactRegistration = () => {
         name: '',
         phone: '',
         email: '',
-        address: '',
-        emergencyContact: '',
-        medicalInfo: ''
+        address: ''
       });
       
       setIsOpen(false);
@@ -135,25 +129,6 @@ export const ContactRegistration = () => {
               />
             </div>
             
-            <div className="space-y-2">
-              <Label htmlFor="emergencyContact">Emergency Contact</Label>
-              <Input
-                id="emergencyContact"
-                placeholder="Emergency contact name and phone"
-                value={formData.emergencyContact}
-                onChange={(e) => handleInputChange('emergencyContact', e.target.value)}
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="medicalInfo">Medical Information</Label>
-              <Input
-                id="medicalInfo"
-                placeholder="Allergies, medications, conditions..."
-                value={formData.medicalInfo}
-                onChange={(e) => handleInputChange('medicalInfo', e.target.value)}
-              />
-            </div>
           </div>
           
           <div className="flex gap-3 pt-4">
