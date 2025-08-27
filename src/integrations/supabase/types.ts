@@ -112,8 +112,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      decode_medical_data: {
+        Args: { encoded_data: string }
+        Returns: string
+      }
       decrypt_medical_data: {
         Args: { encrypted_data: string; encryption_key?: string }
+        Returns: string
+      }
+      encode_medical_data: {
+        Args: { data: string }
         Returns: string
       }
       encrypt_medical_data: {
