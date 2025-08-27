@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import { User, Phone, Mail, MapPin } from 'lucide-react';
 
 export const ContactRegistration = () => {
@@ -17,20 +18,55 @@ export const ContactRegistration = () => {
     medicalInfo: ''
   });
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // In a real app, this would save to a database
-    console.log('Contact registration:', formData);
-    
-    toast({
-      title: "Registration Successful",
-      description: "Your contact details have been saved for emergency situations.",
-    });
-    
-    setIsOpen(false);
+    try {
+      const { error } = await supabase
+        .from('contacts')
+        .insert({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email || null,
+          address: formData.address || null,
+          emergency_contact: formData.emergencyContact || null,
+          medical_info: formData.medicalInfo || null,
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Registration Successful",
+        description: "Your contact details have been saved for emergency situations.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        address: '',
+        emergencyContact: '',
+        medicalInfo: ''
+      });
+      
+      setIsOpen(false);
+    } catch (error) {
+      console.error('Error saving contact:', error);
+      toast({
+        title: "Registration Failed",
+        description: "There was an error saving your contact details. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -121,8 +157,8 @@ export const ContactRegistration = () => {
           </div>
           
           <div className="flex gap-3 pt-4">
-            <Button type="submit" className="flex-1">
-              Save Details
+            <Button type="submit" className="flex-1" disabled={isSubmitting}>
+              {isSubmitting ? 'Saving...' : 'Save Details'}
             </Button>
             <Button type="button" variant="outline" onClick={() => setIsOpen(false)}>
               Cancel
