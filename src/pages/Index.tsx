@@ -10,7 +10,7 @@ const Index = () => {
       <div className="text-center mb-8">
         <div className="flex items-center justify-center gap-3 mb-4">
           <AlertTriangle className="w-8 h-8 text-emergency" />
-          <h1 className="text-4xl font-bold text-foreground">SOS Light</h1>
+          <h1 className="text-4xl font-bold text-foreground">Festival SOS Light</h1>
         </div>
         <p className="text-muted-foreground text-lg">Emergency Alert System for crowded spaces. </p>
       </div>
