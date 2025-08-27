@@ -4,6 +4,7 @@ import { ContactRegistration } from '@/components/ContactRegistration';
 import { Card, CardContent } from '@/components/ui/card';
 import { AlertTriangle, Phone, Shield } from 'lucide-react';
 const Index = () => {
+  console.log('Index component is rendering');
   const [isSOSActive, setIsSOSActive] = useState(false);
   return <div className="min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-200">
       {/* Header */}
