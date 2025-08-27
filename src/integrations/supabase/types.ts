@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_logs: {
+        Row: {
+          accessed_data: Json | null
+          created_at: string
+          id: string
+          ip_address: unknown | null
+          operation: string
+          table_name: string
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          accessed_data?: Json | null
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          operation: string
+          table_name: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          accessed_data?: Json | null
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          operation?: string
+          table_name?: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       contacts: {
         Row: {
           address: string | null
@@ -22,6 +55,7 @@ export type Database = {
           emergency_contact: string | null
           id: string
           medical_info: string | null
+          medical_info_encrypted: string | null
           name: string
           phone: string
           updated_at: string
@@ -33,6 +67,7 @@ export type Database = {
           emergency_contact?: string | null
           id?: string
           medical_info?: string | null
+          medical_info_encrypted?: string | null
           name: string
           phone: string
           updated_at?: string
@@ -44,6 +79,7 @@ export type Database = {
           emergency_contact?: string | null
           id?: string
           medical_info?: string | null
+          medical_info_encrypted?: string | null
           name?: string
           phone?: string
           updated_at?: string
@@ -76,11 +112,27 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      decrypt_medical_data: {
+        Args: { encrypted_data: string; encryption_key?: string }
+        Returns: string
+      }
+      encrypt_medical_data: {
+        Args: { data: string; encryption_key?: string }
+        Returns: string
+      }
+      get_medical_info_decrypted: {
+        Args: { contact_id: string }
+        Returns: string
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
+        Returns: boolean
+      }
+      update_medical_info_secure: {
+        Args: { contact_id: string; new_medical_info: string }
         Returns: boolean
       }
     }
