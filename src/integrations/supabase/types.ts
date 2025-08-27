@@ -18,9 +18,12 @@ export type Database = {
         Row: {
           accessed_data: Json | null
           created_at: string
+          hash_verification: string | null
           id: string
           ip_address: unknown | null
           operation: string
+          request_id: string | null
+          session_id: string | null
           table_name: string
           user_agent: string | null
           user_id: string | null
@@ -28,9 +31,12 @@ export type Database = {
         Insert: {
           accessed_data?: Json | null
           created_at?: string
+          hash_verification?: string | null
           id?: string
           ip_address?: unknown | null
           operation: string
+          request_id?: string | null
+          session_id?: string | null
           table_name: string
           user_agent?: string | null
           user_id?: string | null
@@ -38,11 +44,50 @@ export type Database = {
         Update: {
           accessed_data?: Json | null
           created_at?: string
+          hash_verification?: string | null
           id?: string
           ip_address?: unknown | null
           operation?: string
+          request_id?: string | null
+          session_id?: string | null
           table_name?: string
           user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      audit_queue: {
+        Row: {
+          accessed_data: Json | null
+          created_at: string | null
+          id: string
+          operation: string
+          processed: boolean | null
+          request_id: string | null
+          session_id: string | null
+          table_name: string
+          user_id: string | null
+        }
+        Insert: {
+          accessed_data?: Json | null
+          created_at?: string | null
+          id?: string
+          operation: string
+          processed?: boolean | null
+          request_id?: string | null
+          session_id?: string | null
+          table_name: string
+          user_id?: string | null
+        }
+        Update: {
+          accessed_data?: Json | null
+          created_at?: string | null
+          id?: string
+          operation?: string
+          processed?: boolean | null
+          request_id?: string | null
+          session_id?: string | null
+          table_name?: string
           user_id?: string | null
         }
         Relationships: []
@@ -126,6 +171,16 @@ export type Database = {
       }
       encrypt_medical_data: {
         Args: { data: string; encryption_key?: string }
+        Returns: string
+      }
+      generate_audit_hash: {
+        Args: {
+          p_accessed_data: Json
+          p_operation: string
+          p_table_name: string
+          p_timestamp: string
+          p_user_id: string
+        }
         Returns: string
       }
       get_medical_info_decrypted: {
