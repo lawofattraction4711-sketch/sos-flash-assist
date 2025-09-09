@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AlertTriangle, Smartphone, Zap, Users, Download, Apple } from 'lucide-react';
+import { AppDemo } from '@/components/AppDemo';
 
 const Landing = () => {
   return (
@@ -46,20 +47,8 @@ const Landing = () => {
             </Button>
           </div>
 
-          {/* Demo Video Placeholder */}
-          <div className="max-w-2xl mx-auto">
-            <Card className="overflow-hidden shadow-2xl">
-              <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-emergency/20 to-accent/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <Smartphone className="w-16 h-16 text-emergency mx-auto mb-4" />
-                    <h3 className="text-2xl font-semibold text-foreground mb-2">App Demo</h3>
-                    <p className="text-muted-foreground">Zie hoe de app werkt in actie</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Interactive App Demo */}
+          <AppDemo />
         </div>
       </section>
 
