@@ -206,10 +206,21 @@ const Landing = () => {
 
       {/* Footer */}
       <footer className="bg-muted py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-muted-foreground">
-            © 2024 Festival SOS Light. Ontwikkeld voor veiligheid op evenementen.
-          </p>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-muted-foreground">
+              © 2024 Festival SOS Light. Ontwikkeld voor veiligheid op evenementen.
+            </p>
+            <div className="flex gap-4 mt-2 md:mt-0">
+              <Button 
+                variant="link" 
+                className="text-muted-foreground hover:text-foreground"
+                onClick={() => window.location.href = '/contact'}
+              >
+                Contact Support
+              </Button>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
