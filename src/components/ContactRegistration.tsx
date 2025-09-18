@@ -6,7 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { User, Phone, Mail, MapPin } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
+import { User, Phone, Mail, MapPin, LogIn } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const ContactRegistration = () => {
   const [formData, setFormData] = useState({
@@ -18,15 +20,28 @@ export const ContactRegistration = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { user, isLoading } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please sign in to register your contact details.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
       const { error } = await supabase
         .from('contacts')
         .insert({
+          user_id: user.id,
           name: formData.name,
           phone: formData.phone,
           email: formData.email || null,
@@ -66,6 +81,30 @@ export const ContactRegistration = () => {
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+
+  const handleAuthRequired = () => {
+    navigate('/auth');
+  };
+
+  // Show loading state while checking auth
+  if (isLoading) {
+    return (
+      <Button variant="outline" className="flex items-center gap-2" disabled>
+        <User className="w-4 h-4" />
+        Loading...
+      </Button>
+    );
+  }
+
+  // Show login prompt if not authenticated
+  if (!user) {
+    return (
+      <Button variant="outline" className="flex items-center gap-2" onClick={handleAuthRequired}>
+        <LogIn className="w-4 h-4" />
+        Sign In to Register
+      </Button>
+    );
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>

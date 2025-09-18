@@ -215,6 +215,13 @@ const Landing = () => {
               <Button 
                 variant="link" 
                 className="text-muted-foreground hover:text-foreground"
+                onClick={() => window.location.href = '/auth'}
+              >
+                Sign In
+              </Button>
+              <Button 
+                variant="link" 
+                className="text-muted-foreground hover:text-foreground"
                 onClick={() => window.location.href = '/contact'}
               >
                 Contact Support
