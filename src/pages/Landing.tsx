@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { AlertTriangle, Smartphone, Zap, Users, Download, Apple } from 'lucide-react';
 import { AppDemo } from '@/components/AppDemo';
+import logoImage from '@/assets/festival-sos-logo.webp';
 
 const Landing = () => {
   return (
@@ -9,7 +10,7 @@ const Landing = () => {
       {/* Header */}
       <header className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-center gap-3">
-          <AlertTriangle className="w-8 h-8 text-emergency" />
+          <img src={logoImage} alt="Festival SOS Light Logo" className="w-12 h-12 rounded-lg" />
           <h1 className="text-3xl font-bold text-foreground">Festival SOS Light</h1>
         </div>
       </header>
@@ -211,7 +212,21 @@ const Landing = () => {
             <p className="text-muted-foreground">
               © 2024 Festival SOS Light. Ontwikkeld voor veiligheid op evenementen.
             </p>
-            <div className="flex gap-4 mt-2 md:mt-0">
+            <div className="flex flex-wrap gap-4 mt-2 md:mt-0 justify-center md:justify-end">
+              <Button 
+                variant="link" 
+                className="text-muted-foreground hover:text-foreground text-sm"
+                onClick={() => window.location.href = '/privacy-policy'}
+              >
+                Privacy Policy
+              </Button>
+              <Button 
+                variant="link" 
+                className="text-muted-foreground hover:text-foreground text-sm"
+                onClick={() => window.location.href = '/terms-of-use'}
+              >
+                Terms of Use
+              </Button>
               <Button 
                 variant="link" 
                 className="text-muted-foreground hover:text-foreground"
