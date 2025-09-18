@@ -210,7 +210,7 @@ const Landing = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground">
-              © 2024 Festival SOS Light. Ontwikkeld voor veiligheid op evenementen.
+              © 2025 Festival SOS Light. Ontwikkeld voor veiligheid op evenementen.
             </p>
             <div className="flex flex-wrap gap-4 mt-2 md:mt-0 justify-center md:justify-end">
               <Button 
@@ -226,13 +226,6 @@ const Landing = () => {
                 onClick={() => window.location.href = '/terms-of-use'}
               >
                 Terms of Use
-              </Button>
-              <Button 
-                variant="link" 
-                className="text-muted-foreground hover:text-foreground"
-                onClick={() => window.location.href = '/auth'}
-              >
-                Sign In
               </Button>
               <Button 
                 variant="link" 
