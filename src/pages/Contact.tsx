@@ -83,7 +83,7 @@ const Contact = () => {
                 <CardContent className="space-y-4">
                   <div>
                     <h4 className="font-semibold mb-2">Email Support</h4>
-                    <p className="text-muted-foreground">support@festivalsoslight.com</p>
+                    <p className="text-muted-foreground">support@festivalsos.nl</p>
                   </div>
                   <div>
                     <h4 className="font-semibold mb-2">Emergency Disclaimer</h4>
@@ -158,7 +158,7 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        placeholder="your.email@example.com"
+                        placeholder="support@festivalsos.nl"
                       />
                     </div>
                   </div>

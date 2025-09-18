@@ -91,7 +91,7 @@ const PrivacyPolicy = () => {
               </p>
               <div className="bg-muted p-4 rounded-lg">
                 <p className="text-muted-foreground">
-                  <strong>Email:</strong> privacy@festivalsos.com<br />
+                  <strong>Email:</strong> support@festivalsos.nl<br />
                   <strong>Website:</strong> https://festivalsos.com/contact
                 </p>
               </div>

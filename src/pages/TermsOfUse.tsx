@@ -98,7 +98,7 @@ const TermsOfUse = () => {
                 If you have any questions about these Terms of Use, please contact us at:
               </p>
               <div className="bg-muted p-4 rounded-lg mt-2">
-                <p className="font-medium">Email: support@festivalsos.com</p>
+                <p className="font-medium">Email: support@festivalsos.nl</p>
                 <p>Subject: Terms of Use Inquiry</p>
               </div>
             </section>
